@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <textarea id="code">return "hi";</textarea>
+        <button id="button">Run</button>
+        <pre id="output"></pre>
+        
+        <script>
+            document.getElementById('button').addEventListener("click", function(){
+                let textarea = document.getElementById('code');
+                let code = textarea.value;
+                let output = document.getElementById('output');
+                try {
+                    let result = Function(code)();
+                    output.innerText = String(result);
+                } catch (e) {
+                    output.innerText = "Error: " + e;
+                }
+            });
+            
+            // Your code here.
+        </script>
+        <script>
+function sendRequest(url, type) {
+    const options = {
+        headers: new Headers({'content-type': type}),
+        mode: 'no-cors'
+    };
+
+    return fetch(url, options);
+}
+let types = ['text/plain', 'text/html','application/json']
+for(let type of types){
+    console.dir(sendRequest('https://eloquentjavascript.net/author',type));
+}
+        </script>
+    </body>
+</html>
